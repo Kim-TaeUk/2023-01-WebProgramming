@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Week5 실습1, 2</title>
+    <style>
+        button {
+            width: 200px;
+            height: 100px;
+            font-size: 40px;
+        }
+
+        button#btn1:hover {
+            background-color: yellow;
+            cursor: grab;
+        }
+
+        button#btn1:active {
+            background-color: white;
+            cursor: grabbing;
+        }
+
+        button:disabled {
+            cursor: progress;
+        }
+
+        a {
+            font-size: 40px;
+        }
+
+        a:any-link:active {
+            background-color: blue;
+            color: white;
+        }
+
+        a:any-link:hover {
+            color: green;
+        }
+
+        ::selection {
+            background-color: yellow;
+            color: black;
+        }
+
+        input[type=radio]:checked + label {
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<h1>고추장찌개</h1>
+
+<!--방법1-->
+<button id="btn1"
+        onclick="setTimeout(function(){
+            document.getElementsByTagName('h1')[0].innerHTML='<i>된장찌개</i>';
+            setTimeout(function (){
+                document.getElementsByTagName('h1')[0].innerHTML=`<i style='color:red'>된장찌개</i>`;
+                },2000);
+            },1000);
+            document.getElementsByTagName('a')[0].innerHTML='빨간색 변환';
+">button1</button>
+
+<!--방법2-->
+<button id="btn2"
+        onclick="setTimeout(function (){
+            document.getElementsByTagName('h1')[0].innerHTML='<i>된장찌개</i>';
+            },1100);
+        setTimeout(function (){
+            document.getElementsByTagName('h1')[0].innerHTML=`<i style='color:red'>된장찌개</i>`;
+            },2200);
+">button2</button>
+
+<button id="btn3" disabled>button3</button>
+
+<a href="https://www.naver.com/">Naver</a>
+
+<form>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br>
+    <input type="radio" id="other" name="gender" value="other">
+    <label for="other">Other</label><br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

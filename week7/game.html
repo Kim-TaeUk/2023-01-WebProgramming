@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function callback() {
+        fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25").then(
+            function (res) {
+                res.json().then(function (data) {
+                    document.body.innerHTML += JSON.stringify(data);
+                });
+            }
+        );
+    }
+
+    async function asyncawait() {
+        const res = await fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/동북권");
+        const data = await res.json();
+        document.body.innerHTML += JSON.stringify(data);
+    }
+
+    function fiveAPI() {
+        const r1 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/도심권");
+        const r2 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/서북권");
+        const r3 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/서남권");
+        const r4 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/동북권");
+        const r5 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/동남권");
+
+        Promise.all([r1, r2, r3, r4, r5]).then(function (res) {
+            res[0].json().then(function (data) {    //res[0] : 도심권
+                document.body.innerHTML += JSON.stringify(data);
+            });
+        });
+    }
+
+    async function fiveAsyncAPI() {
+        const r1 = await fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/도심권");
+        const r2 = await fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/서북권");
+        const r3 = await fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/서남권");
+        const r4 = await fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/동북권");
+        const r5 = await fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/동남권");
+    }
+
+    function fiveRaceAPI() {
+        const r1 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/도심권");
+        const r2 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/서북권");
+        const r3 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/서남권");
+        const r4 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/동북권");
+        const r5 = fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25/동남권");
+
+        Promise.race([r1, r2, r3, r4, r5]).then(function (res) {
+            res.json().then(function (data) {
+                document.body.innerHTML += JSON.stringify(data);
+            });
+        });
+    }
+
+    function wrongPromise1() {
+        const prom = new Promise(function (resolve, reject) {
+        });
+        prom.then(() => {
+            alert("성공");
+        })
+    }
+
+    async function wrongPromise2() {
+        const prom = new Promise(function (resolve, reject) {
+        });
+        await prom;
+        alert("성공");
+    }
+
+    // function typing() {
+    //     console.log(document.getElementById("type").value);
+    // }
+
+    window.clicked = false;
+
+    function noPressForThreeSec() {
+        if (window.clicked) {   //cliked가 true이면(이전에 game함수가 호출됐었다는 의미)
+            window.clicked = false; //false로 바꾸고
+            window.reject('fail');    //reject함수를 실행시켜서 실패 상태를 알린다
+        } else {    //clicked가 false이면(처음 실행하거나, 이전 game함수의 호출에 성공 상태로 끝난 것)
+            window.clicked = true;
+
+            const prom = new Promise(function (resolve, reject) {   //Promise가 정상적으로 잘 수행되면
+                window.reject = reject;
+                setTimeout(function () {
+                    resolve('success');  //resolve(callback함수)에서 전달된 '성공'이
+                }, 3000);   // -> reject(new Error())처럼 정의를 안해주는게 catch에서 error handling을 할 수 있는건가??
+            });
+            prom.then(function (res) {  //value로 전달된다
+                // window.clicked = false;
+                alert(res);
+            }).catch(function (err) {
+                // window.clicked = false;
+                alert(err);
+            }).finally(function () {
+                window.clicked = false;
+            });
+        }
+    }
+
+    function pressInFiveSec() {
+        if (window.clicked) {
+            window.clicked = false;
+
+            window.resolve('success');
+        } else {
+            window.clicked = true;
+
+            const prom = new Promise(function (resolve, reject) {
+                window.resolve = resolve;
+                setTimeout(function () {
+                    reject('fail');
+                }, 5000);
+            });
+            prom.then(function (res) {
+                // window.clicked = false;
+                alert(res);
+            }).catch(function (err) {
+                // window.clicked = false;
+                alert(err);
+            }).finally(function () {
+                window.clicked = false;
+            });
+        }
+    }
+</script>
+<body>
+<h1>동영상 과제 - 게임</h1>
+<button onclick="noPressForThreeSec()">3초 동안 다시 안눌러야 성공</button>
+<button onclick="pressInFiveSec()">5초 안에 다시 눌러야 성공</button>
+<br><br>
+
+<h1>동영상 강의 내용</h1>
+<button onclick="callback()">callback</button>
+<button onclick="asyncawait()">asyncawait</button>
+<button onclick="fiveAPI()">fiveAPI</button>
+<button onclick="fiveAsyncAPI()">fiveAsyncAPI</button>
+<button onclick="fiveRaceAPI()">fiveRaceAPI</button>
+<button onclick="wrongPromise1()">wrongPromise1</button>
+<button onclick="wrongPromise2()">wrongPromise2</button>
+
+<!--<input id="type" type="text" onchange="typing()"/>-->
+</body>
+</html>
+
+<!--5초 안에 클릭을 안하면 실패-->
+<!--버튼을 누르고 3~5초 사이에 다시 눌러야 성공하는 게임-->
+<!--랜덤한 애국가 문장을 주고, 애국가 문장을 10초 안에 타이핑하여 완성하여 엔터치는 게임-->

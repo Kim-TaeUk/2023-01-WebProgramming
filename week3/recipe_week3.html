@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Week3 과제 - 레시피</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <style>
+        .header {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 50px;
+            font-weight: 400; /*default: 400*/
+
+            position: fixed;
+            top: 0;
+            height: 100px;
+            width: 100%;
+            background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAPDQ0NDw8NDQ0NDQ0NDQ0NDw8NDQ0NFREWFhURFRUYHSggGBolGxUVITEhJSkrLi4uFx8/ODMtNygtLisBCgoKDg0NDw8PFSsZFRktKy0tKysrKystLTctNy0tNzctKysrLS0rNysrNysrKystNy0tKysrKysrKysrKysrK//AABEIAHsBmQMBIgACEQEDEQH/xAAbAAEBAQEBAQEBAAAAAAAAAAABAgADBAYFB//EACYQAQEBAAIABgIBBQAAAAAAAAABEQISAxMhUWFxQYHwBJGhsfH/xAAYAQEBAQEBAAAAAAAAAAAAAAAAAQIEA//EABcRAQEBAQAAAAAAAAAAAAAAAAARARL/2gAMAwEAAhEDEQA/AP65w8LPxP8Aa+Xhqz5F5X3eVesR5beh7C2FIzWpvA3jSka8h3Oe8br8FI0rdWwgLxRyi7UcqqxOGRFGhHXBY5963mKi7BqLybVR0tidiLUcrQduxme7hK3cHe4ixHmN3VG5JqtlORakTODdcVam8gjFPYaMqtbui0aKu8zrlrXkDpqbUzmLzBVTY3ZuwDBTeSbVUhtGiKoTo0FVNjaLRWGsAYHDADKYH7F8QXmb4I6Y8XvkHduws+P7AIucldvlyIkdJb8Ht8OWq0I6dozno7CRdiKO7aKnlE1VqVE0KqbFZgtTapNhSDW7DGxUjdmvIXiBFadc9Oqi9bUyqlvsB1h+jnwo2JqhgiKi12wXiUcdbXS8E9FqJ0a6SNhVjmNdLE2CJ0arAKGY4ArHBUGDa2gwIqjNooBWtojA+hTfpeX3bHO9XHlEa71z5cb7q1UNT5c/4bw+VHO0au8E3hfgE6NN4UdaDaNON1AaNNgxUbRrVNCKOOernJCN0M4HjYuFI5Xwh5Lv1bqtI898EeXn4enrE9SpHHjPiOvX0/Cuv00hSOfX6X+DeIwHOwLs+k1rNZ3EYcKbVRsFNqLRBYLW7DVGqbSm0RrUtaFGbQNBWi1OtaB0aNbUDrakaCtYDRVaOwvIao+hn9QZ47zM5q6Ocem+NBfEjzgpzj0d27PPp7NVI7XlGcdbSkdRa5a2lWLtGp0FF6EgSLF4pbQjdWnE6NUhXHPWlQjrG1E5Gcgi9GjU2/YRV5UXkjRqpF9k2jRqoRW0FZRRquSK1mpA2sFRtGsFDaikVRhWaiAUgRLNWAUMyKwYCNraAodDMK/cZWNjkdaGXgxUiWV1bAiWPVuqpAxwYhGFODFpGYMLFNidMoRsCtBSDGw6FIzNrA2trARmZlSAUsVIltKaVI1TSy5qROCxQq1InBYrGxaRzsS6psXNSOYXeI6tVmJY9WwImprpicEiAuwYgkHBigFKVGbUsD6LGLOKutLKC1QxZaiQsCpZWDCgbFEo52N1dAUR1bqsFB1bqrW0qIsTjrrLRyxnX0bIUcWdbxibwKIFX1bqUiA6dRhUiGxeFaRywdXX0BUjl1GOtTya6SOeCxY1akRgq7U2lSJwYdGtUjJp0atZ3GSdFKkFB1tKkTjWNeQ7BBYmq7ptWkTaDWWpH0TK6jHDXVUtisYKnGxQxaUBWNhVSF4MKJZWDCqArBgBiwBmYGDNgMzBaHW7AFIdbslikV2ackaNKOvmfAvNzbVpF3kNRo0qRdqbibU6uBqa2i1pmJqabRVzUjBgtRqlqFSM1YFSDU6amhGtFoGqRrRawVILW0VipH1uwIZxV6R0k+Im/SaNKsVs/kjbPaDRapFbPYWIKrGb9T/IYU/pvT+UVkG9GyBijYMIVWwYzCtjYWwBgsWwOeDF1NBNgNYVIxaaqgEUQWCmiqCpqqmrRk1QqsxNibF1NVInAoKRKbFgqICk0pBRYoVakRUrqatSJsFUFpEhTFSP/9k=");
+
+            margin-bottom: 50px;
+            border-bottom-style: solid;
+            border-width: medium;
+
+            /*text-align: center;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            z-index: 1;
+        }
+
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            height: 100px;
+            width: 100%;
+            background: #333;
+            margin-top: 50px;
+
+            /*text-align: center;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: 'Black Han Sans', sans-serif;
+            font-weight: 400; /*default: 400*/
+            color: #eee;
+            font-size: 2rem;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            width: 870px;
+            background: gainsboro;
+        }
+
+        body {
+            margin: 0;
+            background: #ccc;
+        }
+
+        img {
+            width: 350px;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        .container {
+            margin-top: 100px;
+            margin-bottom: 100px;
+            padding-top: 53px;
+            padding-bottom: 53px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image {
+            width: 350px;
+            margin: 50px 30px 50px 30px;
+            /*padding: 50px 30px 50px 30px;*/
+        }
+
+        .reason {
+            width: 350px;
+            margin: 50px 30px 50px 30px;
+            /*padding: 50px 30px 50px 30px;*/
+            font-family: 'Black Han Sans', sans-serif;
+            font-weight: 400; /*default: 400*/
+            text-align: left;
+            font-size: 10px;
+        }
+
+        .floating {
+            width: 300px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            margin-left: 30px;
+            background: beige;
+            position: sticky;
+            top: 103px;
+        }
+
+        .recipe-link {
+            word-break: break-all;
+            padding: 10px;
+            font-family: 'Black Han Sans', sans-serif;
+            font-weight: 400; /*default: 400*/
+        }
+
+        .table {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 50px;
+            font-family: 'Black Han Sans', sans-serif;
+            font-weight: 400; /*default: 400*/
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 800px;
+        }
+
+        .head-row {
+            display: flex;
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 800px;
+            text-align: center;
+        }
+
+        .cell {
+            padding: 5px 10px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 400px;
+            text-align: center;
+        }
+
+        .cell-exception {
+            padding: 5px 10px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 178px;
+            text-align: center;
+        }
+
+        .cell-blank {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        .order {
+            display: flex;
+            width: 260px;
+            margin: 0 15px 50px 15px;
+            font-family: 'Black Han Sans', sans-serif;
+            font-weight: 400; /*default: 400*/
+        }
+
+        .order-p {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">소갈비찜 레시피</div>
+
+<div class="container">
+    <div class="main">
+        <div class="image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpCc66CWv_nmap3pJjvlB4sQeuBs3PGoDGTw&usqp=CAU"
+                 alt="소갈비찜">
+        </div>
+        <div class="reason">
+            고단백 식품인 소고기는 필수아미노산과 비타민, 철분 등의 무기질이 풍부해 기와 혈을 보충하고 뼈와 근육을 강화시킨다. 또한 아이들 성장발육 촉진은 물론 회복기 병자나 산모의 건강회복에 도움을
+            준다. 갈비찜을 만들 때는 기름기를 제거해야 동맥경화 등의 위험을 줄이고 열량도 낮출 수 있다. 우리 몸의 면역력을 크게 증진 시켜주는 효과까지 있어서 노령자분들에게 특히 좋은 음식이다.
+            이외에도 소고기는 비타민 B, 철분 등이 풍부해서 여성에게 도움이 되는 노화방지, 피부미용, 다이어트 등에 좋다. 소고기에는 근육생성에 도움을 주는 카르니틴이 함유되어 있어 근육을 키우는 사람이
+            섭취하면 도움이 된다.
+        </div>
+        <div class="table">
+            <div class="head-row">
+                <div class="cell">앙념재료</div>
+                <div class="cell">주재료</div>
+            </div>
+            <div class="row">
+                <div class="cell">재료명</div>
+                <div class="cell">수량</div>
+                <div class="cell">재료명</div>
+                <div class="cell">수량</div>
+            </div>
+            <div class="row">
+                <div class="cell">간장</div>
+                <div class="cell">3큰술</div>
+                <div class="cell"><strong>갈비</strong></div>
+                <div class="cell"><strong>600g</strong></div>
+            </div>
+            <div class="row">
+                <div class="cell">설탕</div>
+                <div class="cell">2큰술</div>
+                <div class="cell">당근</div>
+                <div class="cell">20g</div>
+            </div>
+            <div class="row">
+                <div class="cell">육수</div>
+                <div class="cell">12큰술</div>
+                <div class="cell">은행</div>
+                <div class="cell">10알</div>
+            </div>
+            <div class="row">
+                <div class="cell">다진 생강</div>
+                <div class="cell">1작은술</div>
+                <div class="cell">밤</div>
+                <div class="cell">10개</div>
+            </div>
+            <div class="row">
+                <div class="cell">깨소금</div>
+                <div class="cell">2큰술</div>
+                <div class="cell">파</div>
+                <div class="cell">1개</div>
+            </div>
+            <div class="row">
+                <div class="cell">청주</div>
+                <div class="cell">1/4컵</div>
+                <div class="cell">양파</div>
+                <div class="cell">50g</div>
+            </div>
+            <div class="row">
+                <div class="cell-exception">다진 마늘</div>
+                <div class="cell-exception">3큰술</div>
+                <div class="cell-blank"></div>
+            </div>
+            <div class="row">
+                <div class="cell-exception">참기름</div>
+                <div class="cell-exception">1큰술</div>
+                <div class="cell-blank"></div>
+            </div>
+            <div class="row">
+                <div class="cell-exception">후추가루</div>
+                <div class="cell-exception">약간</div>
+                <div class="cell-blank"></div>
+            </div>
+        </div>
+        <div class="order">
+            <ol>
+                <p class="order-p">사전 준비</p>
+                <li>갈비는 사방 5㎝ 크기로 썰어 기름기를 제거한다.</li>
+                <li>기름기를 없앤 갈빗살에 칼집을 낸 다음 찬물에 30분~한 시간쯤 담가 핏물을 빼주고, 혹시 모를 절단 과정에서 섞인 뼛가루나 뼛조각을 제거해준다.<br/>
+                    이 핏물 빼는 과정을 속성으로 하고 싶으면, 한 번 끓여 데치는 거로 대체해도 되긴 된다.
+                </li>
+            </ol>
+        </div>
+        <div class="order">
+            <ol start="3">
+                <p class="order-p">삶기 및 버무리기</p>
+                <li>
+                    끓는 물에 핏물을 뺀 갈비와 토막 낸 양파·파를 넣어 속까지 익을 때까지 삶아낸다.
+                </li>
+                <li>
+                    중간에 젓가락으로 고기를 찔러보아 핏물이 나오는지 확인한다. 핏물이 나오면 고기가 덜 익은 것이다.
+                    고기가 익으면 체에 받친다.
+                </li>
+                <li>
+                    이 국물은 걸러서 지저분한 것을 제거하고 양념장의 육수로 이용한다.
+                    육수에 간장·설탕 등 양념장 재료를 섞는다.
+                </li>
+            </ol>
+        </div>
+        <div class="order">
+            <ol start="6">
+                <p class="order-p">조리기</p>
+                <li>
+                    삶아낸 갈빗살에 양념장을 반만 넣어 끓이고, 도중에 마늘·파·양파를 넣고 조린다.
+                </li>
+                <li>
+                    조림 국물이 반쯤으로 줄면 반 정도만 익힌 당근·밤과 은행, 나머지 양념장을 넣고 조린다.
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="floating">
+        <div class="recipe-link">
+            <p>https://www.10000recipe.com/recipe/6881450</p>
+            <p>https://blog.naver.com/iam2320/220801730807</p>
+            <p>https://finereview.co.kr/entry/소갈비찜-맛있게-만드는-법-부드럽게-만드는-알토란-소갈비찜-양념-황금레시피</p>
+            <p>https://wtable.co.kr/recipes/QdmhE3eDSkvt4823BdbSZYXp</p>
+            <p>https://mariawow.tistory.com/11</p>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    2018112034 김태욱
+</div>
+</body>
+</html>

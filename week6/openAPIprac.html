@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>미세먼지 화면 만들기</title>
+    <script>
+        function load() {
+            const con = confirm("data를 불러오시겠습니까?");
+
+            if (con === false) {
+                console.error("data를 안불러옵니다");
+                return;
+            }
+            // fetch함수는 기본적으로 비동기 처리이다
+            // 동기적 처리로 만들기 위해 .then()을 사용한다
+            fetch("http://openapi.seoul.go.kr:8088/5a46486149786f6439305372514a6f/json/RealtimeCityAir/1/25").then(
+                function (res) {
+                    res.json().then(
+                        function (res2) {
+                            // alert(res2.RealtimeCityAir.RESULT.MESSAGE);
+                            alert(res2.RealtimeCityAir.row[0].MSRSTE_NM + "에 오신 것을 환영합니다.");
+
+                            let tmp_IDEX_MVL = [];
+                            for (let i = 0; i < 25; i++) {
+                                tmp_IDEX_MVL.push(res2.RealtimeCityAir.row[i].IDEX_MVL);
+                            }
+                            tmp_IDEX_MVL.sort((a, b) => a - b);
+
+                            for (let i = 0; i < 25; i++) {
+                                document.getElementById("data").innerHTML = document.getElementById("data").innerHTML +
+                                    `<tr id="tr${i}">
+                                        <td>${res2.RealtimeCityAir.row[i].MSRSTE_NM}</td>
+                                        <td>${check_zero(res2.RealtimeCityAir.row[i].PM10)}</td>
+                                        <td>${check_zero(res2.RealtimeCityAir.row[i].PM25)}</td>
+                                        <td>${check_zero(res2.RealtimeCityAir.row[i].O3)}</td>
+                                        <td>${check_zero(res2.RealtimeCityAir.row[i].SO2)}</td>
+                                        <td>${check_zero(res2.RealtimeCityAir.row[i].MSRRGN_NM)}</td>
+                                        <td>${check_zero(res2.RealtimeCityAir.row[i].IDEX_NM)}</td>
+                                        <td>${check_zero(res2.RealtimeCityAir.row[i].IDEX_MVL)}</td>
+                                    </tr>`;
+                                check_IDEX_NM(res2.RealtimeCityAir.row[i].IDEX_NM, i);
+                                make_bold(tmp_IDEX_MVL, res2.RealtimeCityAir.row[i].IDEX_MVL, i);
+                                if (i !== 24) {
+                                    make_border(res2.RealtimeCityAir.row[i].MSRRGN_NM, res2.RealtimeCityAir.row[i + 1].MSRRGN_NM, i);
+                                }
+                            }
+                            // console.log(tmp_IDEX_MVL);
+                        }
+                    );
+                }
+            );
+        }
+
+        function check_zero(data) {
+            if (data === 0) {
+                return '-';
+            } else {
+                return data;
+            }
+        }
+
+        function check_IDEX_NM(IDEX_NM, i) {
+            if (IDEX_NM === '보통') {
+                document.getElementById("tr" + i).style.color = "green";
+            } else if (IDEX_NM === '좋음') {
+                document.getElementById("tr" + i).style.color = "blue";
+            } else {
+                document.getElementById("tr" + i).style.color = "red";
+            }
+        }
+
+        function make_bold(tmp_IDEX_MVL, IDEX_MVL, i) {
+            if (tmp_IDEX_MVL.slice(0, 5).includes(IDEX_MVL)) {
+                // console.log(tmp_IDEX_MVL.slice(0, 5));
+                document.getElementById("tr" + i).style.color = "blue";
+                document.getElementById("tr" + i).style.fontWeight = "bold";
+            } else if (tmp_IDEX_MVL.slice(-5).includes(IDEX_MVL)) {
+                // console.log(tmp_IDEX_MVL.slice(-5));
+                document.getElementById("tr" + i).style.color = "red";
+                document.getElementById("tr" + i).style.fontWeight = "bold";
+            }
+        }
+
+        function make_border(MSRRGN_NM, next_MSRRGN_NM, i) {
+            if (MSRRGN_NM !== next_MSRRGN_NM) {
+                document.getElementById("tr" + i).style.borderBottom = "3px solid black";
+            }
+        }
+    </script>
+</head>
+<body>
+<button onclick="load()">get data</button>
+
+<table style="border-collapse: collapse">
+    <thead>
+    <th>지역명</th>
+    <th>PM10</th>
+    <th>PM25</th>
+    <th>O3</th>
+    <th>SO2</th>
+    <th>MSRRGN_NM</th>
+    <th>IDEX_NM</th>
+    <th>IDEX_MVL</th>
+    </thead>
+    <tbody id="data">
+    </tbody>
+</table>
+</body>
+</html>

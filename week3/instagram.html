@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Week3 과제 - instagram</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 1600px;
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .thumbnail {
+            padding: 10px;
+        }
+
+        .thumbnail-img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 50%;
+        }
+
+        .username {
+            width: 65px;
+            font-size: 20px;
+            color: white;
+            padding: 0 10px;
+        }
+
+        #blue-badge {
+            width: 20px;
+            padding: 5px;
+        }
+
+        .follow {
+            width: 85px;
+            font-size: 20px;
+            color: dodgerblue;
+            padding: 0 10px;
+        }
+
+        .left-align {
+            display: flex;
+            width: 600px;
+            flex-direction: row-reverse;
+            padding-right: 20px;
+        }
+
+        #three-dots {
+            width: 20px;
+            padding: 15px;
+        }
+
+        .main-img {
+            width: 800px;
+            height: auto;
+        }
+
+        .button-bar {
+            display: flex;
+        }
+
+        .button-image {
+            width: 50px;
+            padding: 15px;
+        }
+
+        .text-bar {
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        #like {
+            font-size: 20px;
+            padding: 15px;
+        }
+
+        #main-text {
+            font-size: 20px;
+            padding: 0 15px 5px 15px;
+        }
+
+        #comment-show {
+            font-size: 20px;
+            padding: 0px 15px;
+            color: grey;
+        }
+
+        #date {
+            padding: 15px 15px 15px 15px;
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <div class="thumbnail">
+            <img class="thumbnail-img"
+                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVgqxeNvZQ72OdlIJit9d1fk72tkpaw4JtWw&usqp=CAU">
+        </div>
+        <div class="username">
+            ldh_sky
+        </div>
+        <div>
+            <img id="blue-badge" src="blue-instagram-verified-sign-18758.svg">
+        </div>
+        <div class="follow">
+            팔로우
+        </div>
+        <div class="left-align">
+            <img id="three-dots" src="three-dots-line-svgrepo-com.svg">
+        </div>
+    </div>
+    <div class="main-image">
+        <img class="main-img"
+             src="http://cdn.mydaily.co.kr/FILES/202011/202011201439591187_2.jpg">
+    </div>
+    <div class="button-bar">
+        <img class="button-image" src="heart-3511.svg">
+        <img class="button-image" src="instagram-comment-13416.svg">
+        <img class="button-image" src="instagram-share-13423.svg">
+        <div class="left-align">
+            <img class="button-image" src="save-instagram-black-lineal-18315.svg">
+        </div>
+    </div>
+    <div class="text-bar">
+        <div id="like">좋아요 181.3만개</div>
+        <div id="main-text">ldf_sky 영광스러운 여정의 시작</div>
+        <div id="comment-show"> 댓글 9305개 모두 보기</div>
+        <div id="date">12월 30, 2022</div>
+    </div>
+</div>
+
+</body>
+</html>
